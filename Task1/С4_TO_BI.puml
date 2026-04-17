@@ -1,0 +1,104 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(analyst, "Аналитик", "Аналитика и отчёты")
+Person(operator, "Оператор клиники", "Работа с пациентами")
+Person(data_scientist, "Data Scientist", "ML и анализ данных")
+
+System_Boundary(system, "Future 2.0") {
+
+    Container(auth, "Auth Service (IdP)", "Keycloak", "Аутентификация и авторизация (SSO, RBAC/ABAC)")
+
+    Container(api_gateway, "API Gateway", "REST", "Точка входа для сервисов")
+
+    Container(bff_portal, "BFF Data Portal", "Backend", "Backend for Frontend для портала данных")
+    Container(bff_operator, "BFF Operator UI", "Backend", "Backend для клинических интерфейсов")
+
+    Container(data_portal, "Data Portal", "Web App", "Self-service аналитика")
+    Container(bi, "BI System", "Power BI", "Отчёты и дашборды")
+
+    System_Boundary(data_platform, "Data Platform (Облако)") {
+
+        Container(data_lake, "Data Lake", "S3", "Сырые и обработанные данные")
+        Container(lakehouse, "Lakehouse", "Аналитика и хранение")
+
+        Container(streaming, "Streaming Platform", "Kafka", "Потоковые данные")
+        Container(batch, "Batch Processing", "Spark / dbt", "Трансформации")
+        Container(orchestrator, "Orchestration", "Airflow", "Управление пайплайнами")
+
+        Container(data_catalog, "Data Catalog", "DataHub", "Metadata, lineage, governance")
+    }
+
+    System_Boundary(domains, "Domain Data Products") {
+
+        Container(medical_dp, "Medical Data Product", "Aggregated", "Обезличенные медданные")
+        Container(fintech_dp, "Fintech Data Product", "Financial", "Финансовые данные")
+        Container(ai_dp, "AI Data Product", "ML Output", "Результаты моделей")
+        Container(corp_dp, "Corporate Data Product", "Business", "финансы")
+    }
+
+    System_Boundary(ops, "Operational Systems") {
+
+        Container(med_systems, "Medical Systems", "Медицинские системы")
+        Container(fintech_services, "Fintech Services", "Java / Go", "Банковские сервисы")
+        Container(ai_services, "AI Services", "Python", "ML сервисы")
+    }
+}
+
+
+Rel(analyst, auth, "Аутентификация")
+Rel(operator, auth, "Аутентификация")
+Rel(data_scientist, auth, "Аутентификация")
+
+Rel(data_portal, auth, "SSO")
+Rel(bi, auth, "SSO")
+Rel(api_gateway, auth, "Token validation")
+
+Rel(analyst, data_portal, "Запросы")
+Rel(analyst, bi, "Просматривает отчёты")
+
+Rel(operator, bff_operator, "Работа с данными пациентов")
+
+Rel(data_scientist, lakehouse, "Анализ данных напрямую")
+
+Rel(data_portal, bff_portal, "API")
+Rel(bff_operator, api_gateway, "Запросы")
+
+Rel(bff_portal, api_gateway, "Запросы")
+
+Rel(api_gateway, med_systems, "API")
+Rel(api_gateway, fintech_services, "API")
+Rel(api_gateway, ai_services, "API")
+
+Rel(med_systems, streaming, "События")
+Rel(fintech_services, streaming, "События")
+Rel(ai_services, streaming, "События")
+
+Rel(streaming, data_lake, "Сырые данные")
+
+Rel(data_lake, batch, "Обработка")
+Rel(batch, lakehouse, "Curated data")
+Rel(orchestrator, batch, "Оркестрация")
+
+Rel(lakehouse, medical_dp, "Формирование")
+Rel(lakehouse, fintech_dp, "Формирование")
+Rel(lakehouse, ai_dp, "Формирование")
+Rel(lakehouse, corp_dp, "Формирование")
+
+Rel(medical_dp, data_portal, "Данные")
+Rel(fintech_dp, data_portal, "Данные")
+Rel(ai_dp, data_portal, "Данные")
+Rel(corp_dp, data_portal, "Данные")
+
+Rel(medical_dp, bi, "Данные")
+Rel(fintech_dp, bi, "Данные")
+Rel(ai_dp, bi, "Данные")
+Rel(corp_dp, bi, "Данные")
+
+Rel(bi, lakehouse, "SQL запросы")
+
+Rel(data_catalog, lakehouse, "Lineage")
+Rel(data_catalog, data_lake, "Данные")
+Rel(data_catalog, data_portal, "Доступы")
+
+@enduml

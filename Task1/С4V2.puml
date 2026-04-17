@@ -1,0 +1,110 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(business_user, "Бизнес-пользователь", "Аналитика и отчёты")
+Person(operator, "Оператор клиники", "Работа с пациентами")
+Person(data_scientist, "Data Scientist", "ML и анализ")
+
+System_Boundary(system, "Architecture-future 2.0") {
+
+    System_Boundary(platform_domain, "Platform Domain") {
+        Container(api_gateway, "API Gateway", "REST", "Точка входа в сервисы")
+        Container(kafka, "Event Streaming", "Kafka", "Асинхронные события между доменами")
+        Container(auth, "Auth Service", "Keycloak", "SSO, RBAC/ABAC")
+
+        Container(data_lake, "Data Lake", "S3", "Сырые данные")
+        Container(lakehouse, "Lakehouse", "Аналитика")
+        Container(data_catalog, "Data Catalog", "DataHub", "Контроль данных, происхождение")
+
+        Container(batch, "Batch Processing", "Spark / dbt", "Трансформации")
+        Container(orchestrator, "Airflow", "Orchestration", "Управление пайплайнами данных")
+    }
+
+    System_Boundary(medical_domain, "Medical Domain") {
+        Container(med_systems, "Medical Systems", "Apps", "Операционные медсистемы")
+        Container(med_dp, "Medical Data Product", "Aggregated", " Обезличенные данные для аналитики")
+    }
+
+    System_Boundary(fintech_domain, "Fintech Domain") {
+        Container(fintech_services, "Fintech Services", "Java / Go", "Транзакции, кредиты")
+        Container(fin_dp, "Fintech Data Product", "Financial", "Агрегированные финданные, без чувствительной инфморации")
+    }
+
+    System_Boundary(ai_domain, "AI Domain") {
+        Container(ai_services, "AI Services", "Python", "ML модели")
+        Container(ai_dp, "AI Data Product", "ML Output", "Результаты моделей")
+    }
+
+    System_Boundary(corp_domain, "Corporate Domain") {
+        Container(corp_systems, "Corporate Systems", "ERP", "HR, финансы")
+        Container(corp_dp, "Corporate Data Product", "Business", "Корпоративная аналитика, без чувствительной информации")
+    }
+
+
+    Container(data_portal, "Data Portal", "Web App", "Self-service аналитика")
+    Container(bi, "BI System", "Power BI", "Просмотр дашбордов")
+
+    Container(bff_portal, "BFF Data Portal", "Backend", "Агрегация для UI")
+}
+
+Rel(business_user, auth, "Аутентификация")
+Rel(operator, auth, "Аутентификация")
+Rel(data_scientist, auth, "Аутентификация")
+
+Rel(data_portal, auth, "SSO")
+Rel(api_gateway, auth, "Token validation")
+
+Rel(operator, med_systems, "")
+Rel(data_scientist, lakehouse, "Анализирует напрямую")
+
+Rel(business_user, data_portal, "Запросы")
+Rel(business_user, bi, "Смотрит отчёты")
+
+
+Rel(data_portal, bff_portal, "API")
+Rel(bff_portal, api_gateway, "Запросы")
+
+
+Rel(api_gateway, med_systems, "Sync API")
+Rel(api_gateway, fintech_services, "Sync API")
+Rel(api_gateway, ai_services, "Sync API")
+
+Rel(med_systems, kafka, "Publishes events")
+Rel(fintech_services, kafka, "Publishes events")
+Rel(ai_services, kafka, "Publishes events")
+Rel(corp_systems, kafka, "Publishes events")
+
+Rel(kafka, data_lake, "Streaming ingestion")
+
+Rel(data_lake, batch, "Raw data")
+Rel(batch, lakehouse, "Curated data")
+Rel(orchestrator, batch, "Оркестрация")
+
+Rel(lakehouse, med_dp, "Формирование мед. данных")
+Rel(lakehouse, fin_dp, "Формирование фин. данных")
+Rel(lakehouse, ai_dp, "Формирование ai данных")
+Rel(lakehouse, corp_dp, "Формирование корп. данных")
+
+Rel(med_dp, data_portal, "Данные")
+Rel(fin_dp, data_portal, "Данные")
+Rel(ai_dp, data_portal, "Данные")
+Rel(corp_dp, data_portal, "Данные")
+
+Rel(med_dp, bi, "Данные")
+Rel(fin_dp, bi, "Данные")
+Rel(ai_dp, bi, "Данные")
+Rel(corp_dp, bi, "Данные")
+
+Rel(bi, lakehouse, "Direct query")
+
+Rel(med_systems, ai_services, "Запросы (диагностика)")
+Rel(ai_services, med_systems, "Результаты")
+
+Rel(med_systems, fintech_services, "Оплата")
+Rel(fintech_services, med_systems, "Статус")
+
+Rel(data_catalog, lakehouse, "Lineage")
+Rel(data_catalog, data_lake, "мета данные")
+Rel(data_catalog, data_portal, "Контроль доступа")
+
+@enduml
