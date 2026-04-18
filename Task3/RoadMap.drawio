@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Roadmap Matrix" id="0">
+    <mxGraphModel dx="1046" dy="686" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="q1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;" value="Q1" vertex="1">
+          <mxGeometry height="60" width="200" x="200" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="q2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" value="Q2" vertex="1">
+          <mxGeometry height="60" width="200" x="400" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="q3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;" value="Q3" vertex="1">
+          <mxGeometry height="60" width="200" x="600" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="q4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;" value="Q4" vertex="1">
+          <mxGeometry height="60" width="200" x="800" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="team1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;" value="Data Platform Team" vertex="1">
+          <mxGeometry height="120" width="180" x="20" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="team2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;" value="BI / Analytics Team" vertex="1">
+          <mxGeometry height="120" width="180" x="20" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="team3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;" value="Integration Team" vertex="1">
+          <mxGeometry height="120" width="180" x="20" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="team4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;" value="Domain Team" vertex="1">
+          <mxGeometry height="120" width="180" x="20" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-1" parent="1" style="whiteSpace=wrap;html=1;" value="• Развёртывание Lakehouse&lt;div&gt;&amp;nbsp;• Развёртывание&amp;nbsp;Kafka&amp;nbsp;&lt;/div&gt;&lt;div&gt;• Определение чувствительных&amp;nbsp; данных (разработка Data Catalog)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="200" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-2" parent="1" style="whiteSpace=wrap;html=1;" value="• Анализ метрик&amp;nbsp;&lt;div&gt;• Подготовка BI миграции&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="200" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-3" parent="1" style="whiteSpace=wrap;html=1;" value="• Подготовка перехода с ESB&amp;nbsp;&lt;div&gt;• Проектирование Kafka&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="200" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-4" parent="1" style="whiteSpace=wrap;html=1;" value="• Определение и проектирование доменов&amp;nbsp;&lt;div&gt;• Распределение данных по владельцам&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="200" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-5" parent="1" style="whiteSpace=wrap;html=1;" value="• Data Pipelines&amp;nbsp;&lt;div&gt;• Подготовка Data Products&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="400" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-6" parent="1" style="whiteSpace=wrap;html=1;" value="• Запуск Data Portal&lt;div&gt;• BI → Lakehouse&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="400" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-7" parent="1" style="whiteSpace=wrap;html=1;" value="• Kafka интеграции&amp;nbsp;" vertex="1">
+          <mxGeometry height="120" width="200" x="400" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-8" parent="1" style="whiteSpace=wrap;html=1;" value="• Создание Data Products&amp;nbsp;&lt;div&gt;• Разработка витрины данных&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="400" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-9" parent="1" style="whiteSpace=wrap;html=1;" value="• Масштабирование платформы&amp;nbsp;&lt;div&gt;• Оптимизация&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="600" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-10" parent="1" style="whiteSpace=wrap;html=1;" value="• Разработка метрик, повышение наблюдаемости системы." vertex="1">
+          <mxGeometry height="120" width="200" x="600" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-11" parent="1" style="whiteSpace=wrap;html=1;" value="• Отказ от ESB&amp;nbsp;&lt;div&gt;• Полный переход на Kafka&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="600" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-12" parent="1" style="whiteSpace=wrap;html=1;" value="• Data Mesh тиражирование&lt;div&gt;• Все домены независимы&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="600" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-13" parent="1" style="whiteSpace=wrap;html=1;" value="• Мониторинг и оптимизация" vertex="1">
+          <mxGeometry height="120" width="200" x="800" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-14" parent="1" style="whiteSpace=wrap;html=1;" value="&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;• Self-service масштабирование&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="800" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-15" parent="1" style="whiteSpace=wrap;html=1;" value="• Real-time интеграции&amp;nbsp;&lt;div&gt;• Расширение интеграций (если требуется)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="800" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="Qy7kyPkXlT4agKj8bVLd-16" parent="1" style="whiteSpace=wrap;html=1;" value="• Поддержка и мониторинг, подключение новых доменов." vertex="1">
+          <mxGeometry height="120" width="200" x="800" y="460" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

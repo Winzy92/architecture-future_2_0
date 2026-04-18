@@ -1,0 +1,27 @@
+@startuml
+title Terraform Deployment
+
+node "Yandex Cloud" {
+
+  rectangle "VPC Network" {
+
+    rectangle "Public Subnet" {
+      component "NAT / Public IP"
+    }
+
+    rectangle "Private Subnet" {
+
+      component "Data Platform VM"
+      component "Kafka VM"
+      component "BI VM"
+    }
+  }
+
+  component "Managed Services (Manual)" {
+    component "Managed Kafka"
+    component "Data Catalog"
+  }
+
+}
+
+@enduml
